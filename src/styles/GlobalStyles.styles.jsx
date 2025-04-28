@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-
+import "../fonts/EHNormalTrial-Regular.otf";
 const GlobalStyles = createGlobalStyle`
 ${reset}
 
@@ -21,14 +21,20 @@ html {
   font-size: 62.5%;
 }
 
-a{
+body{
   font-size: 1.6rem;
+  font-family: "EHNormalTrial";
 }
 
 :root {
   --light-color: #fff;
   --dark-color: #000;
   --border-color: #ccc;
+}
+
+@font-face {
+  font-family: "EHNormalTrial";
+  src: url("/fonts/EHNormalTrial-Regular.otf") format("truetype");
 }
 `;
 
