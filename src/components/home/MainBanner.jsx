@@ -54,9 +54,9 @@ const MainBanner = () => {
         </p>
       </Title>
       <Video>
-        <video src="/public/videos/일반비_플러스 메인 상단_V2_저용량 버전.mp4" muted autoPlay loop></video>
+        {/* <video src="/public/videos/일반비_플러스 메인 상단_V2_저용량 버전.mp4" muted autoPlay loop></video> */}
         {/* <video src="https://youtu.be/QOZcIWeQYBc"></video> */}
-        {/* <img src="/public/img/thumbnail.png" alt="" /> */}
+        <img src="/public/img/thumbnail.png" alt="" />
       </Video>
     </Container>
   );

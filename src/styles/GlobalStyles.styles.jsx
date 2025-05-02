@@ -17,19 +17,21 @@ a{
   color:inherit;
 }
 
+:root {
+  --light-color: #fff;
+  --dark-color: #000;
+  --border-color: #ccc;
+}
+
 html {
   font-size: 62.5%;
 }
 
 body{
   font-size: 1.6rem;
-  font-family: "EHNormalTrial";
-}
-
-:root {
-  --light-color: #fff;
-  --dark-color: #000;
-  --border-color: #ccc;
+  font-family: "Pretendard";
+  background: var(--light-color);
+  overflow-x: hidden;
 }
 
 @font-face {
