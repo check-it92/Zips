@@ -27,7 +27,7 @@ const TextBox = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 3%;
+  padding: 0 5%;
   gap: 40px;
   @media screen and (max-width: 1024px) {
     height: 500px;
@@ -39,6 +39,9 @@ const TextBox = styled.div`
 const ItemName = styled.h3`
   font-size: 3.6rem;
 `;
+const ItemPrice = styled.div`
+  font-size: 1.4rem;
+`;
 const ItemButton = styled.div`
   display: flex;
   justify-content: space-between;
@@ -47,6 +50,8 @@ const ItemButton = styled.div`
     width: 50%;
     border: none;
     padding: 16px;
+    font-size: 1.4rem;
+    cursor: pointer;
     &:nth-child(1) {
       background: var(--light-color);
       border: 1px solid var(--border-color);
@@ -57,19 +62,49 @@ const ItemButton = styled.div`
     }
   }
 `;
+const TotalPrice = styled.div`
+  font-size: 1.4rem;
+`;
 const ItemCount = styled.div`
   display: flex;
   align-items: center;
+  font-size: 1.4rem;
   button {
+    font-size: 1.4rem;
     border: none;
+    background: none;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    font-family: "Pretendard";
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    align-items: center;
+    &:first-of-type {
+      border-right: none;
+    }
+  }
+  p {
+    border: 1px solid var(--border-color);
+    border-right: none;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 const ItemDesc = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  span {
+  p {
     font-size: 1.4rem;
+  }
+  span {
+    font-size: 1.2rem;
   }
 `;
 
@@ -107,9 +142,11 @@ const RelateItemText = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-const RelateItemPick = styled.span``;
+const RelateItemPick = styled.span`
+  font-size: 1.4rem;
+`;
 const RelateItemName = styled.p`
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border-color);
 `;
@@ -137,21 +174,21 @@ const Detail = () => {
         </SwiperBox>
         <TextBox>
           <ItemName>Treatment</ItemName>
-          <p>KRW 49,900</p>
+          <ItemPrice>KRW 49,900</ItemPrice>
           <ItemCount>
             <button>-</button>
             <p>1</p>
             <button>+</button>
           </ItemCount>
-          <p>
+          <TotalPrice>
             TOTAL: KRW <span>49,900</span>(<span>1</span>)개
-          </p>
+          </TotalPrice>
           <ItemButton>
             <button>ADD TO CART</button>
             <button>ORDER NOW</button>
           </ItemButton>
           <ItemDesc>
-            <p>상품설명</p>
+            <p>DESCRIPTION</p>
             <span>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
               obcaecati fuga facere deleniti incidunt quam et dolore in. Optio
@@ -159,7 +196,7 @@ const Detail = () => {
             </span>
           </ItemDesc>
           <ItemDesc>
-            <p>교환</p>
+            <p>EXCHANGE</p>
             <span>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
               obcaecati fuga facere deleniti incidunt quam et dolore in. Optio

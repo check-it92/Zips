@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 const Container = styled.div`
@@ -160,6 +160,7 @@ const MenuBars = styled.div`
   }
 `;
 const Header = () => {
+  const [category, setCategory] = useState();
   let prevScroll = 0;
   const headerRef = useRef();
   window.addEventListener("scroll", () => {
@@ -175,6 +176,9 @@ const Header = () => {
   const detailMatch = useMatch("/detail");
   const handleMenuBars = () => {
     console.log("hi");
+  };
+  const handleCategory = (e) => {
+    setCategory(e.target.innerText);
   };
   return (
     <Container ref={headerRef}>
@@ -205,9 +209,9 @@ const Header = () => {
       <HeaderRight>
         {commerceMatch || detailMatch ? (
           <HeaderGnb>
-            <li>Style</li>
-            <li>Beauty</li>
-            <li>Artist</li>
+            <li onClick={handleCategory}>Style</li>
+            <li onClick={handleCategory}>Beauty</li>
+            <li onClick={handleCategory}>Artist</li>
             <li>Promotion</li>
           </HeaderGnb>
         ) : (

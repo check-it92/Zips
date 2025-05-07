@@ -19,7 +19,9 @@ const FooterFnb = styled.ul`
   display: flex;
   gap: 16px;
 `;
-const Address = styled.address``;
+const Address = styled.address`
+  font-size: 1.4rem;
+`;
 const AddressList = styled.ul`
   display: flex;
 `;
