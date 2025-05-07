@@ -7,17 +7,19 @@ const Container = styled.div`
   position: fixed;
   mix-blend-mode: difference;
   transform: translateY(0px);
+  top: 0;
   left: 0;
   width: 100%;
   transition: all 0.5s;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   color: #fff;
+  /* backdrop-filter: blur(16px) saturate(180%); */
+
   &.active {
     transform: translateY(-100px);
-    /* backdrop-filter: blur(16px) saturate(180%); */
   }
 `;
 
@@ -34,18 +36,25 @@ const HeaderLogo = styled.h1`
   position: relative;
 `;
 
-const HeaderLogoImg = styled.img``;
+const HeaderLogoImg = styled.img`
+  width: 90px;
+`;
 
 const HeaderSelect = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  a {
-    p {
-      &.selectActive {
-        color: #fff !important;
+  div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 300;
+    font-family: "EHNormalTrial";
+    font-size: 1.2rem;
+    a {
+      p {
+        &.selectActive {
+          color: #5a5959;
+        }
+        color: #fff;
       }
-      color: #333;
     }
   }
 `;
@@ -54,6 +63,9 @@ const HeaderRight = styled.nav`
   display: flex;
   align-items: center;
   gap: 10px;
+  font-weight: 300;
+  font-family: "EHNormalTrial";
+  font-size: 1.2rem;
   @media screen and (max-width: 1024px) {
     gap: 20px;
   }
@@ -81,7 +93,7 @@ const HeaderEtc = styled.ul`
     display: flex;
     align-items: center;
     cursor: pointer;
-    svg {
+    /* svg {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -91,7 +103,7 @@ const HeaderEtc = styled.ul`
         width: 100%;
         fill: rgb(255, 255, 255);
       }
-    }
+    } */
   }
   @media screen and (max-width: 1024px) {
     gap: 20px;
@@ -102,16 +114,10 @@ const HeaderEtc = styled.ul`
         pointer-events: none;
         position: absolute;
       }
-      svg {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: default;
-        position: relative;
-        width: 20px;
-        path {
-          width: 100%;
-          fill: rgb(255, 255, 255);
-        }
+      img {
+        object-fit: cover;
+        width: 14px;
+        height: 14px;
       }
     }
   }
@@ -154,16 +160,8 @@ const MenuBars = styled.div`
   }
 `;
 const Header = () => {
-  const commerceMatch = useMatch("/");
-  const ottMatch = useMatch("/ott");
-  const headerRef = useRef();
-  const navigate = useNavigate();
-
-  const mainNavigate = () => {
-    navigate("/");
-  };
-
   let prevScroll = 0;
+  const headerRef = useRef();
   window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     if (scrollTop > prevScroll) {
@@ -173,69 +171,64 @@ const Header = () => {
     }
     prevScroll = scrollTop;
   });
+  const commerceMatch = useMatch("/");
+  const detailMatch = useMatch("/detail");
   const handleMenuBars = () => {
     console.log("hi");
   };
   return (
     <Container ref={headerRef}>
       <HeaderLeft>
-        <HeaderLogo onClick={mainNavigate}>
+        <Link to="/">
           <HeaderLogoImg src="./img/Logo.png" />
-        </HeaderLogo>
+        </Link>
         <HeaderSelect>
-          <Link to="/">
-            {commerceMatch && commerceMatch ? (
-              <p className="selectActive">COMMERCE</p>
-            ) : (
+          {commerceMatch || detailMatch ? (
+            <div>
               <p>COMMERCE</p>
-            )}
-          </Link>
-          <span>|</span>
-          <Link to="/ott">
-            {ottMatch && ottMatch ? (
-              <p className="selectActive">OTT</p>
-            ) : (
+              <span>|</span>
+              <Link to="/ott">
+                <p className="selectActive">OTT</p>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link to="/">
+                <p className="selectActive">COMMERCE</p>
+              </Link>
+              <span>|</span>
               <p>OTT</p>
-            )}
-          </Link>
+            </div>
+          )}
         </HeaderSelect>
       </HeaderLeft>
       <HeaderRight>
-        {(commerceMatch && (
+        {commerceMatch || detailMatch ? (
           <HeaderGnb>
-            <li>STYLE</li>
-            <li>BEAUTY</li>
-            <li>ARTIST</li>
-            <li>25SS SEASON SALE</li>
+            <li>Style</li>
+            <li>Beauty</li>
+            <li>Artist</li>
+            <li>Promotion</li>
           </HeaderGnb>
-        )) ||
-          (ottMatch && (
-            <HeaderGnb>
-              <li>haha</li>
-            </HeaderGnb>
-          ))}
+        ) : (
+          <HeaderGnb>
+            <li>haha</li>
+          </HeaderGnb>
+        )}
         <HeaderBars>|</HeaderBars>
         <HeaderEtc>
           <li>
-            <span>CART</span>
-            <svg viewBox="0 0 576 512">
-              <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-            </svg>
+            <span>Cart</span>
+            {/* <img src="./img/cartIcon.svg" alt="" /> */}
           </li>
           <li>
-            <span>SEARCH</span>
-            <svg viewBox="0 0 512 512">
-              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-            </svg>
+            <span>Search</span>
           </li>
           <li>
-            <span>LOGIN</span>
-            <svg viewBox="0 0 448 512">
-              <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
-            </svg>
+            <span>Login</span>
           </li>
         </HeaderEtc>
-        <MenuBars onClick={handleMenuBars}>
+        <MenuBars>
           <p></p>
           <p></p>
           <p></p>
