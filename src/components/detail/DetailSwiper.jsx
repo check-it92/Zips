@@ -1,0 +1,103 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import styled from "styled-components";
+
+const Container = styled.div`
+  .swiper {
+    .swiper-wrapper {
+      width: 100% !important;
+      .swiper-slide {
+        height: calc(100vh - 60px) !important;
+        &:nth-child(1) {
+          background: rosybrown;
+        }
+        &:nth-child(2) {
+          background: dodgerblue;
+        }
+        &:nth-child(3) {
+          background: darkgoldenrod;
+        }
+        &:nth-child(4) {
+          background: saddlebrown;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .swiper {
+      .swiper-wrapper {
+        .swiper-slide {
+          width: 100% !important;
+          height: 100% !important;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          &:nth-child(1) {
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+  }
+`;
+const DisableSwiper = styled.div`
+  width: 100%;
+`;
+
+const DisableContent = styled.div`
+  width: 100%;
+  height: calc(100vh - 60px) !important;
+  img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+  }
+  &:nth-child(1) {
+  }
+  &:nth-child(2) {
+  }
+`;
+
+const DetailSwiper = ({ enabled }) => {
+  return (
+    <Container>
+      {enabled ? (
+        <Swiper slidesPerView={1}>
+          <SwiperSlide>
+            <img
+              src="https://relilla.com/cdn/shop/files/product_17_kikii_1280x.jpg?v=1698502401"
+              alt="img01"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="https://relilla.com/cdn/shop/files/relilla_sub8_1280x.jpg?v=1698502415"
+              alt="img02"
+            />
+          </SwiperSlide>
+        </Swiper>
+      ) : (
+        <DisableSwiper>
+          <DisableContent>
+            {" "}
+            <img
+              src="https://relilla.com/cdn/shop/files/product_17_kikii_1280x.jpg?v=1698502401"
+              alt="img01"
+            />
+          </DisableContent>
+          <DisableContent>
+            <img
+              src="https://relilla.com/cdn/shop/files/relilla_sub8_1280x.jpg?v=1698502415"
+              alt="img02"
+            />
+          </DisableContent>
+        </DisableSwiper>
+      )}
+    </Container>
+  );
+};
+
+export default DetailSwiper;

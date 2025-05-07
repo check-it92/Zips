@@ -1,5 +1,240 @@
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import DetailSwiper from "../components/detail/DetailSwiper";
+
+const Container = styled.div`
+  /* margin-top: 60px; */
+`;
+const Wrapper = styled.div`
+  display: flex;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
+`;
+const SwiperBox = styled.div`
+  width: 50%;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+`;
+const TextBox = styled.div`
+  width: 50%;
+  height: 100vh;
+  position: sticky;
+  align-self: flex-start;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 3%;
+  gap: 40px;
+  @media screen and (max-width: 1024px) {
+    height: 500px;
+    width: 100%;
+    position: relative;
+  }
+`;
+
+const ItemName = styled.h3`
+  font-size: 3.6rem;
+`;
+const ItemButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  button {
+    width: 50%;
+    border: none;
+    padding: 16px;
+    &:nth-child(1) {
+      background: var(--light-color);
+      border: 1px solid var(--border-color);
+    }
+    &:nth-child(2) {
+      background: var(--dark-color);
+      color: var(--light-color);
+    }
+  }
+`;
+const ItemCount = styled.div`
+  display: flex;
+  align-items: center;
+  button {
+    border: none;
+  }
+`;
+const ItemDesc = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  span {
+    font-size: 1.4rem;
+  }
+`;
+
+const RelateProducts = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 80px 3%;
+  margin-bottom: 80px;
+`;
+const RelateProductsTitle = styled.h3`
+  font-size: 3.2rem !important;
+  font-size: var(--dark-color);
+`;
+const RelateItemWrap = styled.div`
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+`;
+
+const RelateItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+const RelateItemImgWrap = styled.div`
+  width: 100%;
+`;
+const RelateItemImg = styled.img`
+  width: 100%;
+`;
+const RelateItemText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+const RelateItemPick = styled.span``;
+const RelateItemName = styled.p`
+  font-size: 2.2rem;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+`;
 const Detail = () => {
-  return <div>Detail</div>;
+  const [swiperActive, setSwipierActive] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setSwipierActive(true);
+      } else {
+        setSwipierActive(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", () => {
+      handleResize();
+    });
+  }, []);
+  return (
+    <Container>
+      <Wrapper>
+        <SwiperBox>
+          <DetailSwiper enabled={swiperActive} />
+        </SwiperBox>
+        <TextBox>
+          <ItemName>Treatment</ItemName>
+          <p>KRW 49,900</p>
+          <ItemCount>
+            <button>-</button>
+            <p>1</p>
+            <button>+</button>
+          </ItemCount>
+          <p>
+            TOTAL: KRW <span>49,900</span>(<span>1</span>)개
+          </p>
+          <ItemButton>
+            <button>ADD TO CART</button>
+            <button>ORDER NOW</button>
+          </ItemButton>
+          <ItemDesc>
+            <p>상품설명</p>
+            <span>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+              obcaecati fuga facere deleniti incidunt quam et dolore in. Optio
+              quae eligendi nobis sed rem nam consequatur, qui quis nisi. Quos!
+            </span>
+          </ItemDesc>
+          <ItemDesc>
+            <p>교환</p>
+            <span>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+              obcaecati fuga facere deleniti incidunt quam et dolore in. Optio
+              quae eligendi nobis sed rem nam consequatur, qui quis nisi. Quos!
+            </span>
+          </ItemDesc>
+        </TextBox>
+      </Wrapper>
+      <RelateProducts>
+        <RelateProductsTitle>Related Products</RelateProductsTitle>
+        <RelateItemWrap>
+          <RelateItem>
+            <RelateItemImgWrap>
+              <RelateItemImg
+                src="https://relilla.com/cdn/shop/files/product_15_kikii_1280x.jpg?v=1698491589"
+                alt="img02"
+              />
+            </RelateItemImgWrap>
+            <RelateItemText>
+              <RelateItemPick>카리나 PICK</RelateItemPick>
+              <RelateItemName>Sorbet Balm</RelateItemName>
+            </RelateItemText>
+          </RelateItem>
+          <RelateItem>
+            <RelateItemImgWrap>
+              <RelateItemImg
+                src="https://relilla.com/cdn/shop/files/product_8_moist_1280x.jpg?v=1698501809"
+                alt="img03"
+              />
+            </RelateItemImgWrap>
+            <RelateItemText>
+              <RelateItemPick>카리나 PICK</RelateItemPick>
+              <RelateItemName>Sorbet Balm</RelateItemName>
+            </RelateItemText>
+          </RelateItem>
+          <RelateItem>
+            <RelateItemImgWrap>
+              <RelateItemImg
+                src="https://relilla.com/cdn/shop/files/product_11_1280x.jpg?v=1698491524"
+                alt="img04"
+              />
+            </RelateItemImgWrap>
+            <RelateItemText>
+              <RelateItemPick>카리나 PICK</RelateItemPick>
+              <RelateItemName>Sorbet Balm</RelateItemName>
+            </RelateItemText>
+          </RelateItem>
+          <RelateItem>
+            <RelateItemImgWrap>
+              <RelateItemImg
+                src="https://relilla.com/cdn/shop/files/product_25_1280x.jpg?v=1698498801"
+                alt="img05"
+              />
+            </RelateItemImgWrap>
+            <RelateItemText>
+              <RelateItemPick>카리나 PICK</RelateItemPick>
+              <RelateItemName>Sorbet Balm</RelateItemName>
+            </RelateItemText>
+          </RelateItem>
+          <RelateItem>
+            <RelateItemImgWrap>
+              <RelateItemImg
+                src="https://relilla.com/cdn/shop/files/Web_1920_2_0_1280x.jpg?v=1718842654"
+                alt="img06"
+              />
+            </RelateItemImgWrap>
+            <RelateItemText>
+              <RelateItemPick>카리나 PICK</RelateItemPick>
+              <RelateItemName>Sorbet Balm</RelateItemName>
+            </RelateItemText>
+          </RelateItem>
+        </RelateItemWrap>
+      </RelateProducts>
+    </Container>
+  );
 };
 
 export default Detail;

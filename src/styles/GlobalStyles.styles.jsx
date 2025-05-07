@@ -36,7 +36,18 @@ body{
 
 @font-face {
   font-family: "EHNormalTrial";
+  src: url("/fonts/EHNormalTrial-Thin.otf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "EHNormalTrial";
   src: url("/fonts/EHNormalTrial-Regular.otf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "EHNormalTrial";
+  src: url("/fonts/EHNormalTrial-Bold.otf") format("truetype");
+  font-weight: 700;
 }
 `;
 
