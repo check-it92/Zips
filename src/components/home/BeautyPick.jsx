@@ -4,8 +4,8 @@ import { motion } from "motion/react";
 
 /*--- 스타일 ---*/
 const Container = styled.div`
-  background: var(--light);
-  color: var(--dark);
+  background: var(--light-color);
+  color: var(--dark-color);
   padding: 100px 3% 0px;
   /* display: flex; */
 `;
@@ -15,15 +15,15 @@ const MainTitle = styled.div`
   align-items: center;
 `;
 const Title = styled.h2`
-  color: var(--dark);
+  color: var(--dark-color);
   font-size: 10rem;
   letter-spacing: -4px;
 `;
 const Button = styled.button`
   font-size: 2rem;
   padding: 22px 50px;
-  color: var(--light);
-  background: var(--dark);
+  color: var(--light-color);
+  background: var(--dark-color);
   text-transform: uppercase;
   border: none;
   outline: none;
@@ -37,7 +37,7 @@ const ProductList = styled.ul`
   padding-bottom: 1px;
 `;
 const ProductItem = styled.li`
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--border-color);
   padding-right: 12px;
   &:nth-child(5),
   &:last-child {
@@ -62,13 +62,13 @@ const ProductInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   transition: all 0.5s;
   cursor: pointer;
   &:hover {
-    color: var(--light);
-    background: var(--dark);
+    color: var(--light-color);
+    background: var(--dark-color);
   }
 `;
 const Prod_sub = styled.span`
