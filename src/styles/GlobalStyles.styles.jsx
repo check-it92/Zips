@@ -21,6 +21,9 @@ a{
   --light-color: #fff;
   --dark-color: #000;
   --border-color: #ccc;
+  --accent: #dc143c;
+  --subTitle: #838383;
+  --lightGray: #D3D3D3;
 }
 
 html {

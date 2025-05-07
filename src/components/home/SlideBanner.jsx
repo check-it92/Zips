@@ -1,12 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 //스타일
 const Container = styled.section`
   width: 100%;
   height: 400px;
-  background: var(--dark);
-  color: var(--light);
+  background: var(--dark-color);
+  color: var(--light-color);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 `;
@@ -26,7 +26,7 @@ const Title = styled.article`
 const ControlBar = styled.div`
   height: 2px;
   width: 100px;
-  background: var(--light);
+  background: var(--light-color);
 `;
 const CardWrapper = styled.ul`
   padding: 3% 0;
@@ -41,7 +41,7 @@ const CardWrapper = styled.ul`
 const CardItem = styled.li`
   /* width: 100px; */
   /* height: 100%; */
-  background: var(--light);
+  background: var(--light-color);
   cursor: pointer;
   overflow: hidden;
   video {
