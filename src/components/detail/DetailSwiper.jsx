@@ -9,16 +9,12 @@ const Container = styled.div`
       .swiper-slide {
         height: calc(100vh - 60px) !important;
         &:nth-child(1) {
-          background: rosybrown;
         }
         &:nth-child(2) {
-          background: dodgerblue;
         }
         &:nth-child(3) {
-          background: darkgoldenrod;
         }
         &:nth-child(4) {
-          background: saddlebrown;
         }
       }
     }
@@ -78,11 +74,16 @@ const DetailSwiper = ({ enabled }) => {
               alt="img02"
             />
           </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="https://relilla.com/cdn/shop/files/product_17_kikii_1280x.jpg?v=1698502401"
+              alt="img01"
+            />
+          </SwiperSlide>
         </Swiper>
       ) : (
         <DisableSwiper>
           <DisableContent>
-            {" "}
             <img
               src="https://relilla.com/cdn/shop/files/product_17_kikii_1280x.jpg?v=1698502401"
               alt="img01"
@@ -92,6 +93,12 @@ const DetailSwiper = ({ enabled }) => {
             <img
               src="https://relilla.com/cdn/shop/files/relilla_sub8_1280x.jpg?v=1698502415"
               alt="img02"
+            />
+          </DisableContent>
+          <DisableContent>
+            <img
+              src="https://relilla.com/cdn/shop/files/product_17_kikii_1280x.jpg?v=1698502401"
+              alt="img01"
             />
           </DisableContent>
         </DisableSwiper>

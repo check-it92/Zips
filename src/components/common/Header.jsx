@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 const Container = styled.div`
@@ -160,8 +160,9 @@ const MenuBars = styled.div`
   }
 `;
 const Header = () => {
-  let prevScroll = 0;
   const headerRef = useRef();
+  const navigate = useNavigate();
+  let prevScroll = 0;
   window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     if (scrollTop > prevScroll) {
@@ -173,8 +174,15 @@ const Header = () => {
   });
   const commerceMatch = useMatch("/");
   const detailMatch = useMatch("/detail");
-  const handleMenuBars = () => {
-    console.log("hi");
+  const filterCategoryMatch = useMatch("/filtercategory/:category");
+  // const handleMenuBars = () => {
+  //   console.log("hi");
+  // };
+
+  const handleCategory = (e) => {
+    const category = e.target.innerText;
+    // console.log(category);
+    navigate(`/filtercategory/${category}`);
   };
   return (
     <Container ref={headerRef}>
@@ -183,7 +191,7 @@ const Header = () => {
           <HeaderLogoImg src="./img/Logo.png" />
         </Link>
         <HeaderSelect>
-          {commerceMatch || detailMatch ? (
+          {commerceMatch || detailMatch || filterCategoryMatch ? (
             <div>
               <p>COMMERCE</p>
               <span>|</span>
@@ -203,11 +211,11 @@ const Header = () => {
         </HeaderSelect>
       </HeaderLeft>
       <HeaderRight>
-        {commerceMatch || detailMatch ? (
+        {commerceMatch || detailMatch || filterCategoryMatch ? (
           <HeaderGnb>
-            <li>Style</li>
-            <li>Beauty</li>
-            <li>Artist</li>
+            <li onClick={handleCategory}>Style</li>
+            <li onClick={handleCategory}>Beauty</li>
+            <li onClick={handleCategory}>Artist</li>
             <li>Promotion</li>
           </HeaderGnb>
         ) : (
