@@ -160,9 +160,9 @@ const MenuBars = styled.div`
   }
 `;
 const Header = () => {
-  const [category, setCategory] = useState();
-  let prevScroll = 0;
   const headerRef = useRef();
+  const navigate = useNavigate();
+  let prevScroll = 0;
   window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     if (scrollTop > prevScroll) {
@@ -174,11 +174,15 @@ const Header = () => {
   });
   const commerceMatch = useMatch("/");
   const detailMatch = useMatch("/detail");
-  const handleMenuBars = () => {
-    console.log("hi");
-  };
+  const filterCategoryMatch = useMatch("/filtercategory/:category");
+  // const handleMenuBars = () => {
+  //   console.log("hi");
+  // };
+
   const handleCategory = (e) => {
-    setCategory(e.target.innerText);
+    const category = e.target.innerText;
+    // console.log(category);
+    navigate(`/filtercategory/${category}`);
   };
   return (
     <Container ref={headerRef}>
@@ -187,7 +191,7 @@ const Header = () => {
           <HeaderLogoImg src="./img/Logo.png" />
         </Link>
         <HeaderSelect>
-          {commerceMatch || detailMatch ? (
+          {commerceMatch || detailMatch || filterCategoryMatch ? (
             <div>
               <p>COMMERCE</p>
               <span>|</span>
@@ -207,7 +211,7 @@ const Header = () => {
         </HeaderSelect>
       </HeaderLeft>
       <HeaderRight>
-        {commerceMatch || detailMatch ? (
+        {commerceMatch || detailMatch || filterCategoryMatch ? (
           <HeaderGnb>
             <li onClick={handleCategory}>Style</li>
             <li onClick={handleCategory}>Beauty</li>
